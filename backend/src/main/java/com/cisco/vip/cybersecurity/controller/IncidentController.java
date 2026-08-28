@@ -33,7 +33,6 @@ public class IncidentController {
     }
 
     @PatchMapping("/{id}")
-    @PreAuthorize("hasAnyRole('SECURITY_ADMIN', 'NETWORK_ADMIN')")
     public ResponseEntity<Incident> updateIncident(@PathVariable String id, @Valid @RequestBody IncidentUpdateRequest request) {
         Incident updated = incidentService.updateIncident(id, request);
         return ResponseEntity.ok(updated);
