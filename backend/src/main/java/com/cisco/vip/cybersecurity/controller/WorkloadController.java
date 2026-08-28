@@ -32,14 +32,12 @@ public class WorkloadController {
     }
 
     @PatchMapping("/{id}/compromise")
-    @PreAuthorize("hasAnyRole('SECURITY_ADMIN', 'NETWORK_ADMIN')")
     public ResponseEntity<Workload> toggleCompromise(@PathVariable String id, @RequestBody Map<String, Boolean> body) {
         boolean compromised = body.getOrDefault("compromised", true);
         return ResponseEntity.ok(workloadService.toggleCompromised(id, compromised));
     }
 
     @PatchMapping("/{id}/quarantine")
-    @PreAuthorize("hasAnyRole('SECURITY_ADMIN', 'NETWORK_ADMIN')")
     public ResponseEntity<Workload> toggleQuarantine(@PathVariable String id, @RequestBody Map<String, Boolean> body) {
         boolean quarantined = body.getOrDefault("quarantined", true);
         return ResponseEntity.ok(workloadService.toggleQuarantine(id, quarantined));

@@ -23,29 +23,43 @@ function getHeaders(): HeadersInit {
   };
 }
 
-async function request<T>(url: string, options?: RequestInit): Promise<T> {
-  const response = await fetch(`${API_BASE}${url}`, {
-    ...options,
-    headers: {
-      ...getHeaders(),
-      ...options?.headers
+async function request<T>(url: string, options?: RequestInit, timeoutMs = 12000): Promise<T> {
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
+
+  try {
+    const response = await fetch(`${API_BASE}${url}`, {
+      ...options,
+      signal: options?.signal || controller.signal,
+      headers: {
+        ...getHeaders(),
+        ...options?.headers
+      }
+    });
+
+    clearTimeout(timeoutId);
+
+    if (!response.ok) {
+      let errorMsg = `HTTP Error ${response.status}: ${response.statusText}`;
+      try {
+        const errJson = await response.json();
+        if (errJson.message) errorMsg = errJson.message;
+      } catch {}
+      throw new Error(errorMsg);
     }
-  });
 
-  if (!response.ok) {
-    let errorMsg = `HTTP Error ${response.status}: ${response.statusText}`;
-    try {
-      const errJson = await response.json();
-      if (errJson.message) errorMsg = errJson.message;
-    } catch {}
-    throw new Error(errorMsg);
+    if (response.status === 204) {
+      return {} as T;
+    }
+
+    return await response.json();
+  } catch (error: any) {
+    clearTimeout(timeoutId);
+    if (error.name === 'AbortError') {
+      throw new Error(`Request to ${url} timed out after ${timeoutMs / 1000}s`);
+    }
+    throw error;
   }
-
-  if (response.status === 204) {
-    return {} as T;
-  }
-
-  return response.json();
 }
 
 export const api = {
