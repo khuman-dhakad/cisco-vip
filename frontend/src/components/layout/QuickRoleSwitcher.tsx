@@ -39,9 +39,9 @@ export const QuickRoleSwitcher: React.FC = () => {
     },
     {
       username: 'faculty',
-      label: 'Faculty User (LNCT)',
+      label: 'Academic Faculty',
       role: 'FACULTY',
-      desc: 'Teaching applications only; restricted from DB/Admin',
+      desc: 'Academic portal access only; restricted from DB/Admin',
       icon: BookOpen
     },
     {
