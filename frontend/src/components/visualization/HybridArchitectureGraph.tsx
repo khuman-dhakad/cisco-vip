@@ -1,26 +1,24 @@
 import React, { useState } from 'react';
 import { useApp } from '../../context/AppContext';
 import { NodeDetailModal } from './NodeDetailModal';
-import { 
-  Users, 
-  KeyRound, 
-  ShieldCheck, 
-  Server, 
-  Database, 
-  Cloud, 
-  Lock, 
-  Network, 
-  Layers, 
-  AlertTriangle, 
-  Flame, 
-  Sparkles,
-  Info,
+import {
+  Users,
+  KeyRound,
+  ShieldCheck,
+  Server,
+  Database,
+  Cloud,
+  Lock,
+  Network,
+  AlertTriangle,
   Radio,
-  Cpu
+  Cpu,
+  ArrowDown,
+  Layers
 } from 'lucide-react';
 
 export const HybridArchitectureGraph: React.FC = () => {
-  const { workloads, segments, hybridLink, selectedNode, setSelectedNode } = useApp();
+  const { workloads, hybridLink, selectedNode, setSelectedNode } = useApp();
   const [activeFilter, setActiveFilter] = useState<'ALL' | 'PRIVATE_DC' | 'PUBLIC_CLOUD'>('ALL');
 
   const appAWorkload = workloads.find(w => w.code === 'APP_A');
@@ -33,39 +31,40 @@ export const HybridArchitectureGraph: React.FC = () => {
 
   return (
     <div className="space-y-4">
-      {/* Visualizer Controls */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 p-3.5 rounded-xl bg-slate-900/90 border border-slate-800">
+      {/* Visualizer Header & Domain Switcher */}
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 p-3.5 rounded-xl bg-slate-900 border border-slate-800 shadow-soc-sm">
         <div className="flex items-center gap-2 text-xs font-mono text-slate-300">
-          <Radio className="w-4 h-4 text-cyan-400 animate-pulse" />
-          <span>INTERACTIVE TOPOLOGY MAP (Click any node to inspect security controls)</span>
+          <Radio className="w-4 h-4 text-sky-400 animate-pulse" />
+          <span className="font-semibold text-slate-200">INTERACTIVE TOPOLOGY MAP</span>
+          <span className="text-slate-500 hidden md:inline">• Select any node to inspect security controls</span>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5 bg-slate-950 p-1 rounded-lg border border-slate-800">
           <button
             onClick={() => setActiveFilter('ALL')}
-            className={`px-3 py-1 rounded-lg text-xs font-mono transition-all ${
+            className={`px-3 py-1 rounded-md text-xs font-mono transition-all ${
               activeFilter === 'ALL'
-                ? 'bg-cyan-600 text-white font-semibold shadow-sm shadow-cyan-950'
-                : 'bg-slate-800 text-slate-400 hover:text-slate-200'
+                ? 'bg-sky-600 text-white font-semibold shadow-sm'
+                : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900'
             }`}
           >
             Full Hybrid
           </button>
           <button
             onClick={() => setActiveFilter('PRIVATE_DC')}
-            className={`px-3 py-1 rounded-lg text-xs font-mono transition-all ${
+            className={`px-3 py-1 rounded-md text-xs font-mono transition-all ${
               activeFilter === 'PRIVATE_DC'
-                ? 'bg-cyan-600 text-white font-semibold'
-                : 'bg-slate-800 text-slate-400 hover:text-slate-200'
+                ? 'bg-sky-600 text-white font-semibold shadow-sm'
+                : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900'
             }`}
           >
             Private DC
           </button>
           <button
             onClick={() => setActiveFilter('PUBLIC_CLOUD')}
-            className={`px-3 py-1 rounded-lg text-xs font-mono transition-all ${
+            className={`px-3 py-1 rounded-md text-xs font-mono transition-all ${
               activeFilter === 'PUBLIC_CLOUD'
-                ? 'bg-cyan-600 text-white font-semibold'
-                : 'bg-slate-800 text-slate-400 hover:text-slate-200'
+                ? 'bg-sky-600 text-white font-semibold shadow-sm'
+                : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900'
             }`}
           >
             Public Cloud
@@ -74,16 +73,16 @@ export const HybridArchitectureGraph: React.FC = () => {
       </div>
 
       {/* Main Interactive Diagram Canvas */}
-      <div className="relative rounded-2xl bg-[#070a10] border border-slate-800/90 p-5 md:p-8 overflow-hidden">
-        {/* Background Network Grid Pattern */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b15_1px,transparent_1px),linear-gradient(to_bottom,#1e293b15_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
+      <div className="relative rounded-xl bg-[#090d16] border border-slate-800 p-5 md:p-8 overflow-hidden shadow-soc-md">
+        {/* Subtle Background Pattern */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b10_1px,transparent_1px),linear-gradient(to_bottom,#1e293b10_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
 
-        <div className="relative z-10 flex flex-col items-center gap-6 max-w-5xl mx-auto">
+        <div className="relative z-10 flex flex-col items-center gap-4 max-w-5xl mx-auto">
           
           {/* LEVEL 1: REMOTE & CAMPUS USERS */}
           <div 
             onClick={() => handleNodeClick({
-              name: 'Remote / Campus Users & Faculty',
+              name: 'Remote / Campus Identities & Faculty',
               type: 'IDENTITY_CONSUMER',
               cidr: '192.168.1.0/24 & Remote VPN',
               environment: 'CAMPUS_ENTERPRISE',
@@ -94,32 +93,32 @@ export const HybridArchitectureGraph: React.FC = () => {
               allowedConnections: ['Faculty -> Academic Portal (HTTPS 443)', 'Admin -> Bastion VPN (mTLS)'],
               blockedConnections: ['Direct access to Database Segment', 'Direct access to Kubernetes Core']
             })}
-            className="w-full max-w-md p-4 rounded-xl bg-slate-900/90 border border-cyan-500/30 hover:border-cyan-400 shadow-cyber-cyan cursor-pointer transition-all hover:scale-[1.01] group text-center"
+            className="w-full max-w-md p-4 rounded-xl bg-slate-900/90 border border-slate-700/80 hover:border-sky-500/80 shadow-sm cursor-pointer transition-all hover:scale-[1.01] group text-center"
           >
-            <div className="flex items-center justify-center gap-2 text-cyan-400 mb-1">
+            <div className="flex items-center justify-center gap-2 text-sky-400 mb-1">
               <Users className="w-5 h-5" />
-              <span className="font-mono text-xs uppercase tracking-wider font-bold">REMOTE / CAMPUS USERS</span>
+              <span className="font-mono text-xs uppercase tracking-wider font-bold">REMOTE / CAMPUS IDENTITIES</span>
             </div>
             <p className="text-xs text-slate-300">Enterprise Faculty • Remote Engineers • Administrators</p>
             <div className="mt-2 flex items-center justify-center gap-2">
-              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-cyan-950 text-cyan-300 border border-cyan-800">
+              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-950 text-slate-300 border border-slate-800">
                 192.168.0.0/16
               </span>
-              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">
-                MFA ENFORCED
+              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-950/80 text-emerald-400 border border-emerald-800/60">
+                MFA Enforced
               </span>
             </div>
           </div>
 
           {/* CONNECTOR 1 */}
-          <div className="w-0.5 h-6 bg-gradient-to-b from-cyan-500 to-sky-500 relative">
-            <span className="absolute -left-1 top-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping opacity-75" />
+          <div className="w-0.5 h-5 bg-slate-700 relative">
+            <span className="absolute -left-1 top-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-sky-400" />
           </div>
 
           {/* LEVEL 2: IAM + MFA + RBAC GATEWAY */}
           <div 
             onClick={() => handleNodeClick({
-              name: 'IAM & Dynamic RBAC Security Gate',
+              name: 'Central IAM & Role-Based Access Control Gate',
               type: 'IDENTITY_ACCESS_MANAGEMENT',
               cidr: '10.10.0.5 (Internal IAM Authority)',
               environment: 'CENTRAL_GOVERNANCE',
@@ -130,26 +129,26 @@ export const HybridArchitectureGraph: React.FC = () => {
               allowedConnections: ['Approved JWT tokens with matching permissions'],
               blockedConnections: ['Tampered JWT payloads', 'Unauthenticated API requests', 'Privilege Escalation bypasses']
             })}
-            className="w-full max-w-lg p-4 rounded-xl bg-slate-900/90 border border-sky-500/30 hover:border-sky-400 shadow-sm cursor-pointer transition-all hover:scale-[1.01] group text-center"
+            className="w-full max-w-lg p-4 rounded-xl bg-slate-900/90 border border-slate-700/80 hover:border-sky-500/80 shadow-sm cursor-pointer transition-all hover:scale-[1.01] group text-center"
           >
             <div className="flex items-center justify-center gap-2 text-sky-400 mb-1">
               <KeyRound className="w-5 h-5" />
-              <span className="font-mono text-xs uppercase tracking-wider font-bold">IAM + MFA + RBAC ENGINE</span>
+              <span className="font-mono text-xs uppercase tracking-wider font-bold">CENTRAL IAM & RBAC CONTROL PLANE</span>
             </div>
             <p className="text-xs text-slate-300">Identity-Aware Gateway • Role Permissions Matrix • Least Privilege</p>
             <div className="mt-2 flex items-center justify-center gap-2">
-              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-sky-950 text-sky-300 border border-sky-800">
+              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-950 text-slate-300 border border-slate-800">
                 JWT Auth Provider
               </span>
-              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-purple-950 text-purple-300 border border-purple-800">
+              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-sky-950/80 text-sky-400 border border-sky-800/60">
                 6 RBAC Roles Active
               </span>
             </div>
           </div>
 
           {/* CONNECTOR 2 */}
-          <div className="w-0.5 h-6 bg-gradient-to-b from-sky-500 to-indigo-500 relative">
-            <span className="absolute -left-1 top-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-sky-400 animate-ping opacity-75" />
+          <div className="w-0.5 h-5 bg-slate-700 relative">
+            <span className="absolute -left-1 top-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-sky-400" />
           </div>
 
           {/* LEVEL 3: ENTERPRISE SECURITY GATEWAY */}
@@ -166,37 +165,37 @@ export const HybridArchitectureGraph: React.FC = () => {
               allowedConnections: ['Explicitly whitelisted Source-Destination tuples'],
               blockedConnections: ['All implicit unlisted traffic (Zero-Trust Default Deny)']
             })}
-            className="w-full max-w-xl p-4 rounded-xl bg-slate-900/95 border border-indigo-500/40 hover:border-indigo-400 shadow-cyber-cyan cursor-pointer transition-all hover:scale-[1.01] group text-center"
+            className="w-full max-w-xl p-4 rounded-xl bg-slate-900/95 border border-slate-700/80 hover:border-sky-500/80 shadow-sm cursor-pointer transition-all hover:scale-[1.01] group text-center"
           >
-            <div className="flex items-center justify-center gap-2 text-indigo-400 mb-1">
+            <div className="flex items-center justify-center gap-2 text-sky-400 mb-1">
               <ShieldCheck className="w-5 h-5" />
-              <span className="font-mono text-xs uppercase tracking-wider font-bold">ENTERPRISE SECURITY GATEWAY & FIREWALL</span>
+              <span className="font-mono text-xs uppercase tracking-wider font-bold">STATEFUL ENTERPRISE NEXT-GEN FIREWALL</span>
             </div>
-            <p className="text-xs text-slate-300">Stateful Rule Engine • Layer 7 Deep Packet Inspection • Threat Containment</p>
+            <p className="text-xs text-slate-300">Priority Policy Engine • Layer 7 Deep Packet Inspection • Threat Containment</p>
             <div className="mt-2 flex items-center justify-center gap-2">
-              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">
-                11 Active Security Policies
+              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-950 text-slate-300 border border-slate-800">
+                11 Active Rules
               </span>
-              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">
-                Default-Deny Active
+              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-950/80 text-emerald-400 border border-emerald-800/60">
+                Default-Deny Enforced
               </span>
             </div>
           </div>
 
           {/* SPLIT CONNECTIONS INTO PRIVATE DC & PUBLIC CLOUD */}
-          <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-6 mt-4">
+          <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-5 mt-2">
             
             {/* COLUMN 1: PRIVATE DATA CENTER */}
             {(activeFilter === 'ALL' || activeFilter === 'PRIVATE_DC') && (
-              <div className="rounded-2xl p-5 bg-slate-950/90 border border-slate-800 relative flex flex-col gap-4">
+              <div className="rounded-xl p-5 bg-slate-950/90 border border-slate-800 relative flex flex-col gap-3.5 shadow-soc-sm">
                 <div className="flex items-center justify-between pb-3 border-b border-slate-800">
                   <div className="flex items-center gap-2">
-                    <Server className="w-4 h-4 text-cyan-400" />
+                    <Server className="w-4 h-4 text-sky-400" />
                     <span className="font-mono text-xs font-bold uppercase text-slate-100 tracking-wider">
                       PRIVATE DATA CENTER
                     </span>
                   </div>
-                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-900 text-cyan-300 border border-slate-700">
+                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-900 text-sky-300 border border-slate-700">
                     10.10.0.0/16
                   </span>
                 </div>
@@ -215,24 +214,24 @@ export const HybridArchitectureGraph: React.FC = () => {
                     allowedConnections: ['Campus Users -> Academic Portal (443)', 'App A -> Database Core (SQL 5432)'],
                     blockedConnections: ['App A -> App B (Lateral Movement)', 'App A -> Database SSH (22)']
                   })}
-                  className={`p-3.5 rounded-xl border transition-all cursor-pointer ${
+                  className={`p-3.5 rounded-lg border transition-all cursor-pointer ${
                     appAWorkload?.isCompromised
-                      ? 'bg-rose-950/40 border-rose-500 shadow-cyber-rose'
+                      ? 'bg-rose-950/30 border-rose-500/80 shadow-cyber-rose'
                       : 'bg-slate-900/80 border-slate-800 hover:border-slate-700'
                   }`}
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <span className={`w-2.5 h-2.5 rounded-full ${appAWorkload?.isCompromised ? 'bg-rose-500 animate-ping' : 'bg-emerald-400'}`} />
+                      <span className={`w-2 h-2 rounded-full ${appAWorkload?.isCompromised ? 'bg-rose-500 animate-ping' : 'bg-emerald-400'}`} />
                       <span className="text-xs font-bold text-slate-100 font-mono">App Segment A (Academic)</span>
                     </div>
-                    <span className="text-[10px] font-mono text-cyan-400">10.10.10.0/24</span>
+                    <span className="text-[10px] font-mono text-sky-400">10.10.10.0/24</span>
                   </div>
                   <p className="text-[11px] text-slate-400 mt-1">Workload-App-A (Academic Portal - 10.10.10.15)</p>
                   {appAWorkload?.isCompromised && (
                     <div className="mt-2 flex items-center gap-1.5 text-[11px] text-rose-400 font-mono font-semibold">
                       <AlertTriangle className="w-3.5 h-3.5" />
-                      COMPROMISED - ISOLATION CONTAINMENT ACTIVE
+                      COMPROMISED - CONTAINMENT ACTIVE
                     </div>
                   )}
                 </div>
@@ -249,16 +248,16 @@ export const HybridArchitectureGraph: React.FC = () => {
                     description: 'Houses Academic Evaluation and Examination processing engine.',
                     controls: ['Microsegmentation ACLs', 'East-West Traffic Inspection'],
                     allowedConnections: ['App B -> Core Database (SQL 5432)'],
-                    blockedConnections: ['App A -> App B (Denied by Policy #102)']
+                    blockedConnections: ['App A -> App B (Denied by Policy #130)']
                   })}
-                  className="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-slate-700 transition-all cursor-pointer"
+                  className="p-3.5 rounded-lg bg-slate-900/80 border border-slate-800 hover:border-slate-700 transition-all cursor-pointer"
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <span className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
+                      <span className="w-2 h-2 rounded-full bg-emerald-400" />
                       <span className="text-xs font-bold text-slate-100 font-mono">App Segment B (Grading)</span>
                     </div>
-                    <span className="text-[10px] font-mono text-cyan-400">10.10.20.0/24</span>
+                    <span className="text-[10px] font-mono text-sky-400">10.10.20.0/24</span>
                   </div>
                   <p className="text-[11px] text-slate-400 mt-1">Workload-App-B (Grading Engine - 10.10.20.25)</p>
                 </div>
@@ -277,12 +276,12 @@ export const HybridArchitectureGraph: React.FC = () => {
                     allowedConnections: ['App A & App B SQL Queries (5432)'],
                     blockedConnections: ['Direct Public Cloud Ingress', 'SSH Admin Port 22 from Apps']
                   })}
-                  className="p-3.5 rounded-xl bg-slate-900/90 border border-emerald-500/30 hover:border-emerald-400 transition-all cursor-pointer"
+                  className="p-3.5 rounded-lg bg-slate-900/90 border border-emerald-900/40 hover:border-emerald-700/60 transition-all cursor-pointer"
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <Database className="w-4 h-4 text-emerald-400" />
-                      <span className="text-xs font-bold text-slate-100 font-mono">Database Segment (SIS Core)</span>
+                      <span className="text-xs font-bold text-slate-100 font-mono">Database Segment (Core DB)</span>
                     </div>
                     <span className="text-[10px] font-mono text-emerald-400">10.10.30.0/24</span>
                   </div>
@@ -293,12 +292,12 @@ export const HybridArchitectureGraph: React.FC = () => {
 
             {/* COLUMN 2: PUBLIC CLOUD */}
             {(activeFilter === 'ALL' || activeFilter === 'PUBLIC_CLOUD') && (
-              <div className="rounded-2xl p-5 bg-slate-950/90 border border-slate-800 relative flex flex-col gap-4">
+              <div className="rounded-xl p-5 bg-slate-950/90 border border-slate-800 relative flex flex-col gap-3.5 shadow-soc-sm">
                 <div className="flex items-center justify-between pb-3 border-b border-slate-800">
                   <div className="flex items-center gap-2">
                     <Cloud className="w-4 h-4 text-sky-400" />
                     <span className="font-mono text-xs font-bold uppercase text-slate-100 tracking-wider">
-                      PUBLIC CLOUD (AWS/VPC)
+                      PUBLIC CLOUD (AWS)
                     </span>
                   </div>
                   <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-900 text-sky-300 border border-slate-700">
@@ -320,11 +319,11 @@ export const HybridArchitectureGraph: React.FC = () => {
                     allowedConnections: ['Public Ingress 443', 'Hybrid API Sync to App Segment A'],
                     blockedConnections: ['Direct Access to DC Database Segment', 'Uninspected Inter-VPC Traversal']
                   })}
-                  className="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-slate-700 transition-all cursor-pointer"
+                  className="p-3.5 rounded-lg bg-slate-900/80 border border-slate-800 hover:border-slate-700 transition-all cursor-pointer"
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <span className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
+                      <span className="w-2 h-2 rounded-full bg-emerald-400" />
                       <span className="text-xs font-bold text-slate-100 font-mono">VPC 1: Production Web</span>
                     </div>
                     <span className="text-[10px] font-mono text-sky-400">10.20.1.0/24</span>
@@ -346,7 +345,7 @@ export const HybridArchitectureGraph: React.FC = () => {
                     allowedConnections: ['Frontend -> Backend APIs'],
                     blockedConnections: ['Payments Pod -> Research Pod (Namespace Isolation)', 'Outbound C2 Egress']
                   })}
-                  className="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-slate-700 transition-all cursor-pointer"
+                  className="p-3.5 rounded-lg bg-slate-900/80 border border-slate-800 hover:border-slate-700 transition-all cursor-pointer"
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
@@ -361,7 +360,7 @@ export const HybridArchitectureGraph: React.FC = () => {
                 {/* VPC 3: Analytics & BigData */}
                 <div 
                   onClick={() => handleNodeClick({
-                    name: 'Public Cloud - VPC 3 (Analytics & AI Lake)',
+                    name: 'Public Cloud - VPC 3 (Analytics & Data Lake)',
                     type: 'CLOUD_VPC',
                     cidr: '10.20.3.0/24',
                     environment: 'PUBLIC_CLOUD',
@@ -372,11 +371,11 @@ export const HybridArchitectureGraph: React.FC = () => {
                     allowedConnections: ['Cloud Object Storage Relay'],
                     blockedConnections: ['Cross-VPC Hop to VPC 1 Prod Web']
                   })}
-                  className="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-slate-700 transition-all cursor-pointer"
+                  className="p-3.5 rounded-lg bg-slate-900/80 border border-slate-800 hover:border-slate-700 transition-all cursor-pointer"
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <span className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
+                      <span className="w-2 h-2 rounded-full bg-emerald-400" />
                       <span className="text-xs font-bold text-slate-100 font-mono">VPC 3: Analytics & Data Lake</span>
                     </div>
                     <span className="text-[10px] font-mono text-amber-400">10.20.3.0/24</span>
@@ -402,12 +401,12 @@ export const HybridArchitectureGraph: React.FC = () => {
                 allowedConnections: ['Approved Hybrid API Sync (10.20.1.0/24 -> 10.10.10.0/24)'],
                 blockedConnections: ['Direct Public Cloud to DC Database Ingress', 'Unapproved Route Advertisement']
               })}
-              className="w-full p-4 rounded-xl bg-slate-900/90 border border-cyan-500/30 hover:border-cyan-400 shadow-cyber-cyan cursor-pointer transition-all hover:scale-[1.01] text-center"
+              className="w-full p-4 rounded-xl bg-slate-900/90 border border-slate-700 hover:border-sky-500/80 shadow-sm cursor-pointer transition-all hover:scale-[1.005] text-center mt-2"
             >
-              <div className="flex items-center justify-center gap-2 text-cyan-400 mb-1">
+              <div className="flex items-center justify-center gap-2 text-sky-400 mb-1">
                 <Lock className="w-4 h-4" />
                 <span className="font-mono text-xs uppercase tracking-wider font-bold">
-                  ENCRYPTED HYBRID CONNECTION (IPSec + Direct Connect Redundant Backbone)
+                  ENCRYPTED HYBRID TRUNK (IPSec + Direct Connect Redundant Backbone)
                 </span>
               </div>
               <p className="text-xs text-slate-300">
@@ -418,7 +417,7 @@ export const HybridArchitectureGraph: React.FC = () => {
         </div>
       </div>
 
-      {/* Node Detail Inspector Modal */}
+      {/* Node Detail Inspector Drawer */}
       <NodeDetailModal node={selectedNode} onClose={() => setSelectedNode(null)} />
     </div>
   );
