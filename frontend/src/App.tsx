@@ -21,6 +21,7 @@ import { SecurityPostureView } from './views/SecurityPostureView';
 import { HybridLinkView } from './views/HybridLinkView';
 import { ZeroTrustGuideView } from './views/ZeroTrustGuideView';
 import { GuidedDemoView } from './views/GuidedDemoView';
+import { AboutView } from './views/AboutView';
 
 import { X, CheckCircle2, AlertTriangle, AlertOctagon, Info } from 'lucide-react';
 
@@ -45,6 +46,7 @@ const MainLayout: React.FC = () => {
       case 'hybrid-link': return <HybridLinkView />;
       case 'zero-trust': return <ZeroTrustGuideView />;
       case 'guided-demo': return <GuidedDemoView />;
+      case 'about': return <AboutView />;
       default: return <DashboardView />;
     }
   };

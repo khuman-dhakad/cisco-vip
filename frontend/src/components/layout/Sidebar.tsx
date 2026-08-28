@@ -16,6 +16,7 @@ import {
   Link2, 
   Lock, 
   Compass,
+  Info,
   ChevronRight,
   LucideIcon
 } from 'lucide-react';
@@ -79,6 +80,12 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
         { id: 'posture', label: 'Security Posture (0-100)', icon: ShieldAlert },
         { id: 'guided-demo', label: 'Guided Demo Mode', icon: Compass, badge: '13 STEPS', badgeVariant: 'info' },
       ]
+    },
+    {
+      label: 'PROJECT SPECIFICATIONS',
+      items: [
+        { id: 'about', label: 'About Project', icon: Info },
+      ]
     }
   ];
 
@@ -104,10 +111,10 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
           isOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
-        <div className="p-4 flex-1 space-y-6">
+        <div className="p-4 flex-1 space-y-5">
           {navCategories.map((cat, idx) => (
             <div key={idx}>
-              <p className="text-[10px] font-mono font-semibold text-slate-400 tracking-wider px-3 mb-2">
+              <p className="text-[10px] font-mono font-semibold text-slate-400 tracking-wider px-3 mb-1.5">
                 {cat.label}
               </p>
               <div className="space-y-1">
@@ -152,12 +159,18 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
           ))}
         </div>
 
-        {/* Institution Footer in Sidebar */}
-        <div className="p-4 border-t border-slate-800/80 bg-slate-950/80">
-          <div className="rounded-lg p-2.5 bg-slate-900/80 border border-slate-800 text-[11px] font-mono text-slate-400">
-            <div className="text-slate-200 font-semibold truncate">LNCT Bhopal</div>
-            <div className="text-[10px] text-cyan-400 mt-0.5">Cisco AICTE VIP 2026</div>
-          </div>
+        {/* Sidebar Project Footer */}
+        <div className="p-3 border-t border-slate-800/80 bg-slate-950/80">
+          <button
+            onClick={() => handleNavClick('about')}
+            className="w-full text-left rounded-lg p-2.5 bg-slate-900/80 hover:bg-slate-900 border border-slate-800 hover:border-slate-700 transition-colors text-[11px] font-mono text-slate-400 group"
+          >
+            <div className="text-slate-200 font-semibold flex items-center justify-between">
+              <span>Cisco AICTE VIP 2026</span>
+              <Info className="w-3.5 h-3.5 text-cyan-400 group-hover:text-cyan-300" />
+            </div>
+            <div className="text-[10px] text-slate-400 mt-0.5">Cyber Security Track</div>
+          </button>
         </div>
       </aside>
     </>

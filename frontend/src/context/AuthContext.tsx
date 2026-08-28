@@ -50,8 +50,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setUser({
           id: 'USER_SECADMIN',
           username: 'secadmin',
-          fullName: 'Khuman Dhakad (Lead SecOps)',
-          email: 'khuman.dhakad@cisco-vip.lnct.ac.in',
+          fullName: 'Lead SecOps Administrator',
+          email: 'secadmin@hybrid-enterprise.net',
           role: 'SECURITY_ADMIN',
           department: 'Cyber Security Operations',
           mfaEnabled: true,

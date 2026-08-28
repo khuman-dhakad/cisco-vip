@@ -42,7 +42,7 @@ export const GuidedDemoView: React.FC = () => {
       step: 1,
       title: '1. Hybrid Security Operations Overview',
       subtitle: 'SOC Dashboard & Real-Time Security Posture Metric',
-      narration: 'Welcome to the Cisco AICTE 2026 Hybrid Security Operations Platform built by Khuman Dhakad (LNCT Bhopal). We begin at the SOC Overview displaying our real-time calculated security posture score (95/100), active telemetry, and protected application status across both on-premise and public cloud environments.',
+      narration: 'Welcome to the Cisco Hybrid Security Operations Platform. We begin at the SOC Overview displaying our real-time calculated security posture score (95/100), active telemetry, and protected workload status across on-premise subnets and public cloud VPCs.',
       actionLabel: 'Proceed to Hybrid Architecture',
       actionFn: async () => nextDemoStep()
     },

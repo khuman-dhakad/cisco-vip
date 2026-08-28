@@ -26,7 +26,8 @@ export type AppView =
   | 'posture'
   | 'hybrid-link'
   | 'zero-trust'
-  | 'guided-demo';
+  | 'guided-demo'
+  | 'about';
 
 export interface ToastMessage {
   id: string;

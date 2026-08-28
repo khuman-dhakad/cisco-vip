@@ -2,12 +2,10 @@ import React from 'react';
 import { useApp } from '../../context/AppContext';
 import { QuickRoleSwitcher } from './QuickRoleSwitcher';
 import { NotificationDropdown } from './NotificationDropdown';
-import { 
-  ShieldCheck, 
-  Play, 
-  Activity, 
-  Layers, 
-  ExternalLink,
+import {
+  ShieldCheck,
+  Play,
+  Activity,
   Menu,
   X
 } from 'lucide-react';
@@ -33,7 +31,7 @@ export const Navbar: React.FC<NavbarProps> = ({ sidebarOpen, setSidebarOpen }) =
   return (
     <header className="sticky top-0 z-40 w-full bg-slate-950/80 backdrop-blur-md border-b border-slate-800/80">
       <div className="flex items-center justify-between px-4 lg:px-6 h-16">
-        {/* Left: Brand & Student Details */}
+        {/* Left: Product Brand */}
         <div className="flex items-center gap-3">
           <button
             onClick={() => setSidebarOpen(!sidebarOpen)}
@@ -50,14 +48,14 @@ export const Navbar: React.FC<NavbarProps> = ({ sidebarOpen, setSidebarOpen }) =
             <div>
               <div className="flex items-center gap-2">
                 <span className="font-bold text-sm sm:text-base tracking-wide bg-gradient-to-r from-white via-slate-100 to-slate-300 bg-clip-text text-transparent font-mono">
-                  CISCO VIP 2026
+                  CISCO HYBRID SECOPS
                 </span>
                 <span className="hidden sm:inline-block px-1.5 py-0.5 text-[10px] font-mono font-bold bg-sky-950 text-sky-400 border border-sky-800/60 rounded">
-                  CYBER SECURITY
+                  ZERO TRUST
                 </span>
               </div>
               <div className="text-[11px] text-slate-400 font-mono hidden md:block">
-                <span className="text-cyan-400 font-semibold">KHUMAN DHAKAD</span> • LNCT Bhopal • Hybrid SOC
+                Security Operations Center • <span className="text-emerald-400">System Operational</span>
               </div>
             </div>
           </div>
@@ -86,7 +84,7 @@ export const Navbar: React.FC<NavbarProps> = ({ sidebarOpen, setSidebarOpen }) =
           {/* Hybrid Link Badge */}
           <div className="hidden lg:flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-[11px] font-mono text-slate-300">
             <span className={`w-2 h-2 rounded-full ${hybridLink?.status === 'SECURE' ? 'bg-emerald-400 animate-pulse' : 'bg-rose-400'}`} />
-            <span>HYBRID LINK:</span>
+            <span>HYBRID TRUNK:</span>
             <span className={`font-semibold ${hybridLink?.status === 'SECURE' ? 'text-emerald-400' : 'text-rose-400'}`}>
               {hybridLink?.status || 'SECURE'}
             </span>

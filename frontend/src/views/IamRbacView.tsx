@@ -379,7 +379,7 @@ export const IamRbacView: React.FC = () => {
               value={newUser.email}
               onChange={(e) => setNewUser({ ...newUser, email: e.target.value })}
               className="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-xs text-slate-100 focus:border-cyan-400 outline-none"
-              placeholder="e.g. jsmith@lnct.ac.in"
+              placeholder="e.g. jsmith@enterprise.org"
             />
           </div>
           <div className="grid grid-cols-2 gap-3">

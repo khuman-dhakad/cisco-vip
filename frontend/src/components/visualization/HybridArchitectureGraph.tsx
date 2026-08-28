@@ -89,7 +89,7 @@ export const HybridArchitectureGraph: React.FC = () => {
               environment: 'CAMPUS_ENTERPRISE',
               status: 'SECURE',
               riskLevel: 'LOW',
-              description: 'Campus faculty, researchers, students, and remote administrators connecting via TLS 1.3 with mandatory MFA and role-based policies.',
+              description: 'Enterprise faculty, researchers, remote staff, and administrators connecting via TLS 1.3 with mandatory MFA and role-based policies.',
               controls: ['MFA Verification', 'Device Posture Check', 'Conditional Access', 'SSO via SAML/OIDC'],
               allowedConnections: ['Faculty -> Academic Portal (HTTPS 443)', 'Admin -> Bastion VPN (mTLS)'],
               blockedConnections: ['Direct access to Database Segment', 'Direct access to Kubernetes Core']
@@ -100,7 +100,7 @@ export const HybridArchitectureGraph: React.FC = () => {
               <Users className="w-5 h-5" />
               <span className="font-mono text-xs uppercase tracking-wider font-bold">REMOTE / CAMPUS USERS</span>
             </div>
-            <p className="text-xs text-slate-300">LNCT Bhopal Campus Faculty • Remote Students • Developers</p>
+            <p className="text-xs text-slate-300">Enterprise Faculty • Remote Engineers • Administrators</p>
             <div className="mt-2 flex items-center justify-center gap-2">
               <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-cyan-950 text-cyan-300 border border-cyan-800">
                 192.168.0.0/16
@@ -210,7 +210,7 @@ export const HybridArchitectureGraph: React.FC = () => {
                     environment: 'PRIVATE_DATACENTER',
                     status: appAWorkload?.isCompromised ? 'COMPROMISED' : 'HEALTHY',
                     riskLevel: appAWorkload?.isCompromised ? 'CRITICAL' : 'LOW',
-                    description: 'Houses Academic Portal (Workload-App-A) and student registration services.',
+                    description: 'Houses Academic Portal (Workload-App-A) and web registration services.',
                     controls: ['Microsegmentation ACLs', 'Ingress Filtering', 'Automated Quarantine Sandbox'],
                     allowedConnections: ['Campus Users -> Academic Portal (443)', 'App A -> Database Core (SQL 5432)'],
                     blockedConnections: ['App A -> App B (Lateral Movement)', 'App A -> Database SSH (22)']
@@ -246,7 +246,7 @@ export const HybridArchitectureGraph: React.FC = () => {
                     environment: 'PRIVATE_DATACENTER',
                     status: 'HEALTHY',
                     riskLevel: 'LOW',
-                    description: 'Houses Student Grading and Examination processing engine.',
+                    description: 'Houses Academic Evaluation and Examination processing engine.',
                     controls: ['Microsegmentation ACLs', 'East-West Traffic Inspection'],
                     allowedConnections: ['App B -> Core Database (SQL 5432)'],
                     blockedConnections: ['App A -> App B (Denied by Policy #102)']
@@ -272,7 +272,7 @@ export const HybridArchitectureGraph: React.FC = () => {
                     environment: 'PRIVATE_DATACENTER',
                     status: 'HEALTHY',
                     riskLevel: 'LOW',
-                    description: 'High-security Oracle Database cluster storing student records and institutional credentials.',
+                    description: 'High-security Oracle Database cluster storing core enterprise records and institutional credentials.',
                     controls: ['Air-Gapped Subnet Boundary', 'Stateful SQL Port Inspection (5432/1521)', 'Zero Public Egress'],
                     allowedConnections: ['App A & App B SQL Queries (5432)'],
                     blockedConnections: ['Direct Public Cloud Ingress', 'SSH Admin Port 22 from Apps']

@@ -69,23 +69,23 @@ export const DashboardView: React.FC = () => {
 
   return (
     <div className="space-y-6">
-      {/* Top Banner: Project Context & Student Attributions */}
+      {/* Top Banner: SOC Header & Console Overview */}
       <div className="relative overflow-hidden rounded-2xl p-6 bg-gradient-to-r from-slate-900 via-slate-900 to-cyan-950/40 border border-slate-800 shadow-xl">
         <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
           <div>
             <div className="flex items-center gap-2 mb-1">
               <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-cyan-950 text-cyan-400 border border-cyan-800">
-                CISCO AICTE VIRTUAL INTERNSHIP 2026
+                SECURITY OPERATIONS CENTER
               </span>
-              <span className="px-2 py-0.5 rounded text-[10px] font-mono text-slate-400 bg-slate-800 border border-slate-700">
-                TRACK: CYBER SECURITY
+              <span className="px-2 py-0.5 rounded text-[10px] font-mono text-emerald-400 bg-emerald-950/60 border border-emerald-800/60">
+                ZERO TRUST ENFORCED
               </span>
             </div>
             <h1 className="text-xl sm:text-2xl font-bold text-slate-100 font-mono tracking-tight">
-              Secure Hybrid Data Center Network Security & Attack Containment Platform
+              Hybrid Data Center Network Security & Attack Containment Console
             </h1>
             <p className="text-xs sm:text-sm text-slate-300 mt-1">
-              Candidate: <span className="text-cyan-400 font-semibold">KHUMAN DHAKAD</span> • Lakshmi Narain College of Technology (LNCT), Bhopal
+              Real-time multi-tier workload protection, priority-based policy enforcement, and automated incident triage.
             </p>
           </div>
 
