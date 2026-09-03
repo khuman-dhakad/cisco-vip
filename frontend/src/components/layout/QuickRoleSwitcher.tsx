@@ -75,24 +75,24 @@ export const QuickRoleSwitcher: React.FC = () => {
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700 text-xs font-mono text-slate-200 transition-all shadow-sm"
+        className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-900/80 hover:bg-slate-800/80 border border-slate-800 text-xs font-mono text-slate-200 transition-all shadow-xs"
         title="Switch Active RBAC Role for Demonstration"
       >
-        <CurrentIcon className="w-3.5 h-3.5 text-cyan-400" />
+        <CurrentIcon className="w-3.5 h-3.5 text-sky-400" />
         <span className="hidden sm:inline font-medium">{currentRoleInfo.label}</span>
         <span className="sm:hidden font-medium">{user?.role}</span>
         <ChevronDown className="w-3 h-3 text-slate-400" />
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-72 rounded-xl bg-slate-900 border border-slate-700 shadow-2xl z-50 overflow-hidden animate-in fade-in zoom-in-95 duration-150">
-          <div className="px-4 py-2.5 bg-slate-950 border-b border-slate-800">
-            <p className="text-xs font-semibold text-cyan-400 uppercase tracking-wider font-mono flex items-center gap-1.5">
+        <div className="absolute right-0 mt-2 w-72 rounded-xl bg-slate-900/98 border border-slate-700/80 shadow-2xl z-50 overflow-hidden animate-in fade-in zoom-in-95 duration-150 backdrop-blur-md">
+          <div className="px-4 py-2.5 bg-slate-950/80 border-b border-slate-800">
+            <p className="text-xs font-semibold text-sky-400 uppercase tracking-wider font-mono flex items-center gap-1.5">
               <UserCircle2 className="w-3.5 h-3.5" />
-              RBAC Demo Role Switcher
+              RBAC Demo Persona Switcher
             </p>
-            <p className="text-[11px] text-slate-400 mt-0.5">
-              Instantly simulate different enterprise personas
+            <p className="text-[11px] text-slate-400 mt-0.5 font-sans">
+              Simulate different enterprise access levels
             </p>
           </div>
           <div className="p-1.5 space-y-1">
@@ -103,19 +103,19 @@ export const QuickRoleSwitcher: React.FC = () => {
                 <button
                   key={r.username}
                   onClick={() => handleSelectRole(r.username)}
-                  className={`w-full flex items-start gap-2.5 p-2.5 rounded-lg text-left text-xs transition-colors ${
+                  className={`w-full flex items-start gap-2.5 p-2.5 rounded-lg text-left text-xs transition-all ${
                     isSelected
-                      ? 'bg-cyan-950/60 text-cyan-200 border border-cyan-800/50'
+                      ? 'bg-sky-950/60 text-sky-200 border border-sky-800/50 shadow-xs'
                       : 'hover:bg-slate-800/60 text-slate-300'
                   }`}
                 >
-                  <Icon className={`w-4 h-4 mt-0.5 shrink-0 ${isSelected ? 'text-cyan-400' : 'text-slate-400'}`} />
-                  <div className="flex-1">
+                  <Icon className={`w-4 h-4 mt-0.5 shrink-0 ${isSelected ? 'text-sky-400' : 'text-slate-400'}`} />
+                  <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between">
                       <span className="font-semibold text-slate-100">{r.label}</span>
-                      {isSelected && <Check className="w-3.5 h-3.5 text-cyan-400" />}
+                      {isSelected && <Check className="w-3.5 h-3.5 text-sky-400 shrink-0" />}
                     </div>
-                    <p className="text-[10px] text-slate-400 mt-0.5 leading-tight">{r.desc}</p>
+                    <p className="text-[10px] text-slate-400 mt-0.5 leading-tight font-sans">{r.desc}</p>
                   </div>
                 </button>
               );

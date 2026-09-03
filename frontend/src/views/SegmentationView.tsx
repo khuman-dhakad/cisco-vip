@@ -59,16 +59,16 @@ export const SegmentationView: React.FC = () => {
   return (
     <div className="space-y-6">
       {/* Header Context */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5 rounded-2xl bg-slate-900/80 border border-slate-800">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5 rounded-xl bg-slate-900/80 border border-slate-800/90 shadow-sm backdrop-blur-md">
         <div>
           <div className="flex items-center gap-2">
-            <Grid className="w-5 h-5 text-cyan-400" />
-            <h1 className="text-lg sm:text-xl font-bold font-mono text-slate-100">
+            <Grid className="w-5 h-5 text-sky-400" />
+            <h1 className="text-lg sm:text-xl font-bold font-mono text-slate-100 tracking-tight">
               Hybrid Network Microsegmentation & Blast Radius Control
             </h1>
           </div>
-          <p className="text-xs text-slate-400 mt-1">
-            Simulated CIDR Topology: Private DC (10.10.0.0/16) • Public Cloud VPCs (10.20.0.0/16) • Subnet-Level Isolation Controls
+          <p className="text-xs text-slate-400 mt-1 font-sans">
+            CIDR Boundaries • Subnet Isolation Switches • Ingress / Egress Gateway ACLs
           </p>
         </div>
       </div>

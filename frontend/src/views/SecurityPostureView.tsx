@@ -43,15 +43,15 @@ export const SecurityPostureView: React.FC = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5 rounded-2xl bg-slate-900/80 border border-slate-800">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5 rounded-xl bg-slate-900/80 border border-slate-800/90 shadow-sm backdrop-blur-md">
         <div>
           <div className="flex items-center gap-2">
-            <ShieldAlert className="w-5 h-5 text-cyan-400" />
-            <h1 className="text-lg sm:text-xl font-bold font-mono text-slate-100">
+            <ShieldAlert className="w-5 h-5 text-sky-400" />
+            <h1 className="text-lg sm:text-xl font-bold font-mono text-slate-100 tracking-tight">
               Enterprise Security Posture & Dynamic Risk Index
             </h1>
           </div>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-slate-400 mt-1 font-sans">
             Real-Time Mathematical Posture Score (0-100) Computed From Active IAM, Microsegmentation, Firewall Health & Incident Backlog
           </p>
         </div>
@@ -60,19 +60,19 @@ export const SecurityPostureView: React.FC = () => {
       {/* Main Score Showcase Card */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Score Dial / Banner */}
-        <div className="p-6 rounded-2xl bg-gradient-to-br from-slate-900 via-slate-950 to-cyan-950/30 border border-slate-800 flex flex-col items-center justify-center text-center relative overflow-hidden">
+        <div className="p-6 rounded-xl bg-gradient-to-br from-slate-900 via-slate-950 to-sky-950/30 border border-slate-800/90 shadow-sm flex flex-col items-center justify-center text-center relative overflow-hidden">
           <div className="relative z-10">
             <span className="text-xs font-mono font-bold text-slate-400 uppercase tracking-widest block mb-2">
               OVERALL POSTURE SCORE
             </span>
-            <div className="text-6xl sm:text-7xl font-bold font-mono text-transparent bg-clip-text bg-gradient-to-tr from-cyan-400 via-emerald-400 to-white">
+            <div className="text-6xl sm:text-7xl font-bold font-mono text-transparent bg-clip-text bg-gradient-to-tr from-sky-400 via-emerald-400 to-white">
               {score}
               <span className="text-2xl text-slate-500 font-normal">/100</span>
             </div>
-            <div className="mt-3 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 font-mono text-xs font-bold">
+            <div className="mt-3 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 font-mono text-xs font-bold shadow-xs">
               <Sparkles className="w-3.5 h-3.5" /> GRADE {grade} • ZERO TRUST ACTIVE
             </div>
-            <p className="text-xs text-slate-300 mt-4 leading-relaxed max-w-sm">
+            <p className="text-xs text-slate-300 mt-4 leading-relaxed max-w-sm font-sans">
               {posture?.statusSummary}
             </p>
           </div>

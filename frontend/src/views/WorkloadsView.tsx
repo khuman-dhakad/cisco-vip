@@ -76,40 +76,40 @@ export const WorkloadsView: React.FC = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5 rounded-2xl bg-slate-900/80 border border-slate-800">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5 rounded-xl bg-slate-900/80 border border-slate-800/90 shadow-sm backdrop-blur-md">
         <div>
           <div className="flex items-center gap-2">
-            <Server className="w-5 h-5 text-cyan-400" />
-            <h1 className="text-lg sm:text-xl font-bold font-mono text-slate-100">
+            <Server className="w-5 h-5 text-sky-400" />
+            <h1 className="text-lg sm:text-xl font-bold font-mono text-slate-100 tracking-tight">
               Workload & Kubernetes Container Security Management
             </h1>
           </div>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-slate-400 mt-1 font-sans">
             Microservice Hygiene • Namespace Isolation • East-West CNI Calico Policies • Automated Sandbox Quarantine
           </p>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5 p-1 rounded-lg bg-slate-950 border border-slate-800 shrink-0">
           <button
             onClick={() => setActiveTab('ALL')}
-            className={`px-3 py-1.5 rounded-lg text-xs font-mono transition-all ${
-              activeTab === 'ALL' ? 'bg-cyan-600 text-white font-bold' : 'bg-slate-800 text-slate-400'
+            className={`px-3 py-1 rounded-md text-xs font-mono transition-all ${
+              activeTab === 'ALL' ? 'bg-sky-600 text-white font-semibold shadow-xs' : 'text-slate-400 hover:text-slate-200'
             }`}
           >
             All Workloads
           </button>
           <button
             onClick={() => setActiveTab('PRIVATE_DC')}
-            className={`px-3 py-1.5 rounded-lg text-xs font-mono transition-all ${
-              activeTab === 'PRIVATE_DC' ? 'bg-cyan-600 text-white font-bold' : 'bg-slate-800 text-slate-400'
+            className={`px-3 py-1 rounded-md text-xs font-mono transition-all ${
+              activeTab === 'PRIVATE_DC' ? 'bg-sky-600 text-white font-semibold shadow-xs' : 'text-slate-400 hover:text-slate-200'
             }`}
           >
             Private DC
           </button>
           <button
             onClick={() => setActiveTab('K8S_CLOUD')}
-            className={`px-3 py-1.5 rounded-lg text-xs font-mono transition-all ${
-              activeTab === 'K8S_CLOUD' ? 'bg-cyan-600 text-white font-bold' : 'bg-slate-800 text-slate-400'
+            className={`px-3 py-1 rounded-md text-xs font-mono transition-all ${
+              activeTab === 'K8S_CLOUD' ? 'bg-sky-600 text-white font-semibold shadow-xs' : 'text-slate-400 hover:text-slate-200'
             }`}
           >
             Public Cloud / K8s
