@@ -14,23 +14,23 @@ export const Badge: React.FC<BadgeProps> = ({
   pulse = false 
 }) => {
   const variantStyles = {
-    success: 'bg-emerald-950/70 text-emerald-400 border-emerald-500/30',
-    danger: 'bg-rose-950/70 text-rose-400 border-rose-500/30',
-    warning: 'bg-amber-950/70 text-amber-400 border-amber-500/30',
-    info: 'bg-cyan-950/70 text-cyan-400 border-cyan-500/30',
-    purple: 'bg-purple-950/70 text-purple-400 border-purple-500/30',
-    cisco: 'bg-sky-950/70 text-sky-400 border-sky-500/30',
-    neutral: 'bg-slate-800/70 text-slate-300 border-slate-700/50',
+    success: 'bg-emerald-950/60 text-emerald-400 border-emerald-500/30',
+    danger: 'bg-rose-950/60 text-rose-400 border-rose-500/30',
+    warning: 'bg-amber-950/60 text-amber-400 border-amber-500/30',
+    info: 'bg-sky-950/60 text-sky-400 border-sky-500/30',
+    purple: 'bg-purple-950/60 text-purple-400 border-purple-500/30',
+    cisco: 'bg-cyan-950/60 text-cyan-400 border-cyan-500/30',
+    neutral: 'bg-slate-800/60 text-slate-300 border-slate-700/50',
   };
 
   const sizeStyles = {
-    sm: 'text-xs px-2 py-0.5',
-    md: 'text-xs font-semibold px-2.5 py-1',
+    sm: 'text-[11px] font-mono px-2 py-0.5 rounded',
+    md: 'text-xs font-mono font-medium px-2.5 py-1 rounded-md',
   };
 
   return (
     <span
-      className={`inline-flex items-center gap-1.5 rounded-md border font-mono ${variantStyles[variant]} ${sizeStyles[size]} tracking-wide`}
+      className={`inline-flex items-center gap-1.5 border font-mono ${variantStyles[variant]} ${sizeStyles[size]} tracking-tight shrink-0 shadow-xs`}
     >
       {pulse && (
         <span className="relative flex h-1.5 w-1.5">

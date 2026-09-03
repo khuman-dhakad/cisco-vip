@@ -46,23 +46,23 @@ export const AuditLogView: React.FC = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5 rounded-2xl bg-slate-900/80 border border-slate-800">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5 rounded-xl bg-slate-900/80 border border-slate-800/90 shadow-sm backdrop-blur-md">
         <div>
           <div className="flex items-center gap-2">
-            <History className="w-5 h-5 text-cyan-400" />
-            <h1 className="text-lg sm:text-xl font-bold font-mono text-slate-100">
+            <History className="w-5 h-5 text-sky-400" />
+            <h1 className="text-lg sm:text-xl font-bold font-mono text-slate-100 tracking-tight">
               MongoDB Persistent Security Audit Trail
             </h1>
           </div>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-slate-400 mt-1 font-sans">
             Immutable Audit Records • User Actions • Policy State Modifications • Attack Telemetry Logs
           </p>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 shrink-0">
           <button
             onClick={handleExportJson}
-            className="px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-mono text-xs font-semibold transition-all border border-slate-700 flex items-center gap-1.5"
+            className="px-4 py-2 rounded-lg bg-slate-900/80 hover:bg-slate-800/80 text-slate-200 font-mono text-xs font-semibold transition-all border border-slate-700 shadow-xs flex items-center gap-1.5"
           >
             <Download className="w-3.5 h-3.5" />
             <span>Export Audit JSON</span>

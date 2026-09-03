@@ -141,23 +141,23 @@ export const PoliciesView: React.FC = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5 rounded-2xl bg-slate-900/80 border border-slate-800">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5 rounded-xl bg-slate-900/80 border border-slate-800/90 shadow-sm backdrop-blur-md">
         <div>
           <div className="flex items-center gap-2">
-            <FileCheck className="w-5 h-5 text-cyan-400" />
-            <h1 className="text-lg sm:text-xl font-bold font-mono text-slate-100">
+            <FileCheck className="w-5 h-5 text-sky-400" />
+            <h1 className="text-lg sm:text-xl font-bold font-mono text-slate-100 tracking-tight">
               Stateful Firewall & Security Policy Engine
             </h1>
           </div>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-slate-400 mt-1 font-sans">
             Priority-Based Evaluation • CIDR & Workload Tagging • Implicit Zero-Trust Default Deny Boundary
           </p>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 shrink-0">
           <button
             onClick={() => setShowCreateModal(true)}
-            className="px-3.5 py-2 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-mono text-xs font-semibold transition-all shadow-cyber-cyan flex items-center gap-1.5"
+            className="px-4 py-2 rounded-lg bg-sky-600 hover:bg-sky-500 text-white font-mono text-xs font-semibold transition-all shadow-sm flex items-center gap-1.5"
           >
             <Plus className="w-3.5 h-3.5" />
             <span>Add Security Policy</span>

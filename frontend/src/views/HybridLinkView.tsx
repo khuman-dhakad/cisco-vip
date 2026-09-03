@@ -62,16 +62,16 @@ export const HybridLinkView: React.FC = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5 rounded-2xl bg-slate-900/80 border border-slate-800">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5 rounded-xl bg-slate-900/80 border border-slate-800/90 shadow-sm backdrop-blur-md">
         <div>
           <div className="flex items-center gap-2">
-            <Link2 className="w-5 h-5 text-cyan-400" />
-            <h1 className="text-lg sm:text-xl font-bold font-mono text-slate-100">
+            <Link2 className="w-5 h-5 text-sky-400" />
+            <h1 className="text-lg sm:text-xl font-bold font-mono text-slate-100 tracking-tight">
               Hybrid Connection & Direct Connect Gateway Controller
             </h1>
           </div>
-          <p className="text-xs text-slate-400 mt-1">
-            Redundant IPsec VPN Trunk + AWS Direct Connect Dedicated 10 Gbps Fabric with 802.1AE MACsec Layer 2 Encryption
+          <p className="text-xs text-slate-400 mt-1 font-sans">
+            Redundant IPsec VPN • AWS Direct Connect Dedicated Trunk • MACsec Encryption • Automated Link Health Monitoring
           </p>
         </div>
 

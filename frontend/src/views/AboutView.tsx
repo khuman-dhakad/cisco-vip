@@ -21,21 +21,21 @@ export const AboutView: React.FC = () => {
   return (
     <div className="space-y-6">
       {/* Header Context */}
-      <div className="p-6 rounded-2xl bg-gradient-to-r from-slate-900 via-slate-900 to-cyan-950/40 border border-slate-800 shadow-xl">
+      <div className="p-6 rounded-xl bg-gradient-to-r from-slate-900 via-slate-900 to-sky-950/40 border border-slate-800/90 shadow-sm backdrop-blur-md">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <div className="flex items-center gap-2 mb-1.5">
-              <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-cyan-950 text-cyan-400 border border-cyan-800">
+              <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-sky-950/80 text-sky-400 border border-sky-800/60 shadow-xs">
                 PROJECT INFORMATION
               </span>
-              <span className="px-2 py-0.5 rounded text-[10px] font-mono text-emerald-400 bg-emerald-950/60 border border-emerald-800/60">
+              <span className="px-2 py-0.5 rounded text-[10px] font-mono text-emerald-400 bg-emerald-950/60 border border-emerald-800/60 shadow-xs">
                 CISCO AICTE VIP 2026
               </span>
             </div>
             <h1 className="text-xl sm:text-2xl font-bold font-mono text-slate-100 tracking-tight">
               About the Cybersecurity Platform
             </h1>
-            <p className="text-xs sm:text-sm text-slate-300 mt-1">
+            <p className="text-xs sm:text-sm text-slate-300 mt-1 font-sans">
               Architecture specifications, Zero-Trust compliance standards, and project ownership details.
             </p>
           </div>

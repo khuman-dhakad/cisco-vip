@@ -9,12 +9,13 @@ export default {
     extend: {
       colors: {
         soc: {
+          deep: '#060911',      // Purest dark navy foundation
           bg: '#0a0e17',        // Deep obsidian navy
           surface: '#0f172a',   // Slate 900
-          card: '#131d33',      // Elevated dark slate
-          cardHover: '#1a2642', // Interactive hover state
+          card: '#111a2e',      // Elevated dark slate
+          cardHover: '#17233f', // Interactive hover state
           border: '#1e293b',    // Subtle border
-          borderSubtle: '#172238',
+          borderSubtle: '#151f33',
           borderStrong: '#334155',
           text: '#f8fafc',      // Slate 50
           textMuted: '#94a3b8', // Slate 400
@@ -51,10 +52,13 @@ export default {
         mono: ['JetBrains Mono', 'Fira Code', 'Cascadia Code', 'Consolas', 'monospace']
       },
       boxShadow: {
-        'soc-sm': '0 1px 2px 0 rgba(0, 0, 0, 0.4)',
-        'soc-md': '0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -2px rgba(0, 0, 0, 0.5)',
-        'soc-lg': '0 10px 15px -3px rgba(0, 0, 0, 0.6), 0 4px 6px -4px rgba(0, 0, 0, 0.6)',
-        'soc-accent': '0 0 15px -3px rgba(14, 165, 233, 0.2)',
+        'soc-sm': '0 1px 3px 0 rgba(0, 0, 0, 0.35)',
+        'soc-md': '0 4px 6px -1px rgba(0, 0, 0, 0.45), 0 2px 4px -2px rgba(0, 0, 0, 0.45)',
+        'soc-lg': '0 10px 15px -3px rgba(0, 0, 0, 0.55), 0 4px 6px -4px rgba(0, 0, 0, 0.55)',
+        'soc-glow-sky': '0 0 20px -3px rgba(14, 165, 233, 0.25)',
+        'soc-glow-emerald': '0 0 20px -3px rgba(16, 185, 129, 0.25)',
+        'soc-glow-rose': '0 0 20px -3px rgba(244, 63, 94, 0.25)',
+        'soc-glow-amber': '0 0 20px -3px rgba(245, 158, 11, 0.25)',
         'cyber-cyan': '0 0 15px -3px rgba(14, 165, 233, 0.25)',
         'cyber-emerald': '0 0 15px -3px rgba(16, 185, 129, 0.25)',
         'cyber-rose': '0 0 15px -3px rgba(244, 63, 94, 0.25)',
